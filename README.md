@@ -1,7 +1,8 @@
-<img alt="screenshot of exporting Google Calendar" src="screenshot.png" height="400"/>
+<img alt="screenshot of exporting Google Calendar" src="screenshot.png" />
 
 ```console
 $ pip install ics
+[...]
 
 $ python ics2sqlite.py --help
 usage: ics2sqlite.py [-h] input_calendar output_database
