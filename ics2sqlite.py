@@ -58,6 +58,7 @@ def populate_database(calendar: Calendar, db: sqlite3.Connection):
                   already, 'and', event_key)
             print('\tSkipping', repr(event))
             continue
+        hashed_keys[hashed] = event_key
         event_key = hashed
 
         # the event itself
