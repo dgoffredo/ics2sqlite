@@ -1,3 +1,5 @@
+<img alt="screenshot of exporting Google Calendar" src="screenshot.png" height="400"/>
+
 ```console
 $ pip install ics
 
