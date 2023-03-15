@@ -3,7 +3,6 @@ import hashlib
 from ics import Calendar
 import importlib.resources
 from pathlib import Path
-# from . import sql
 import sql
 import sqlite3
 
@@ -34,7 +33,7 @@ def create_tables(db_path):
 
 def populate_database(calendar: Calendar, db: sqlite3.Connection):
     keys = set()
-    hashed_keys = {} # hash -> unhashed key
+    hashed_keys = {}  # hash -> unhashed key
     for event in calendar.timeline:
         # The primary key of the event is a combination of its "UID" and its
         # start time. Recurring events share a "UID" and each occurrence has a
@@ -48,14 +47,15 @@ def populate_database(calendar: Calendar, db: sqlite3.Connection):
             print('\t', repr(event))
             continue
         keys.add(event_key)
-        
+
         # Replace `event_key` with a prefix of its SHA1 hash, for brevity.
         hasher = hashlib.sha1()
         hasher.update(event_key.encode('utf8'))
         hashed = hasher.hexdigest()[:16]
         already = hashed_keys.get(hashed)
         if already is not None:
-            print('Hash collision detected.', hashed, 'is the hash of both', already, 'and', event_key)
+            print('Hash collision detected.', hashed, 'is the hash of both',
+                  already, 'and', event_key)
             print('\tSkipping', repr(event))
             continue
         event_key = hashed
